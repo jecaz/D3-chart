@@ -1,12 +1,16 @@
 {
-  "name": "app-proba",
+  "name": "d3-chart",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev:ssr": "ng run d3-chart:serve-ssr",
+    "serve:ssr": "node dist/d3-chart/server/main.js",
+    "build:ssr": "ng build --prod && ng run d3-chart:server:production",
+    "prerender": "ng run d3-chart:prerender"
   },
   "private": true,
   "dependencies": {
@@ -17,10 +21,15 @@
     "@angular/forms": "~12.1.0",
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
+    "@angular/platform-server": "^12.1.0",
     "@angular/router": "~12.1.0",
     "@ng-bootstrap/ng-bootstrap": "~10.0.0",
+    "@nguniversal/builders": "^12.1.0",
+    "@nguniversal/express-engine": "^12.1.0",
     "bootstrap": "^4.3.1",
     "d3": "^7.1.1",
+    "domino": "^2.1.6",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",

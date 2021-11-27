@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  application: {
+    name: 'd3-chart',
+    angular: 'Angular 12.1.0',
+    bootstrap: 'Bootstrap 4.3.1',
+  },
 };
 
 /*

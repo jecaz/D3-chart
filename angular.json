@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/d3-chart",
+            "outputPath": "dist/d3-chart/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,17 +68,56 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/d3-chart/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "d3-chart:build:production"
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
-              "browserTarget": "d3-chart:build:development"
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "d3-chart:build",
+            "serverTarget": "d3-chart:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "d3-chart:build:production",
+              "serverTarget": "d3-chart:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "d3-chart:build:production",
+            "serverTarget": "d3-chart:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
