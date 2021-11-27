@@ -119,6 +119,18 @@
             "production": {}
           }
         },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "d3-chart:build:production"
+            },
+            "development": {
+              "browserTarget": "d3-chart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
