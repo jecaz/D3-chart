@@ -3,26 +3,4 @@
   [barChart]="data$ | async"
   (barDetails)="barDetails = $event"
 ></d3-bar-chart>
-<div *ngIf="barDetails" class="row">
-  <div class="col-8">
-    <div class="row ml-5 mt-4">
-      <div
-        class="col-12"
-        [ngStyle]="{
-          'background-color': barDetails.color
-        }"
-      >
-        <div class="row">
-          <div class="col-6 text-white p-2">Date</div>
-          <div class="col-6 text-white p-2">Value</div>
-        </div>
-      </div>
-      <div class="col-6 border-bottom p-2">
-        {{ barDetails.date | date: "MMMM yyyy" }}
-      </div>
-      <div class="col-6 border-bottom p-2">
-        {{ barDetails.value | number: "1.2-2" }}
-      </div>
-    </div>
-  </div>
-</div>
+<d3-bar-chart-details [barDetails]="barDetails"></d3-bar-chart-details>

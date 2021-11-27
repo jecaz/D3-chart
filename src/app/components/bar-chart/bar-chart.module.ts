@@ -4,6 +4,7 @@ import { BarCharService } from 'src/app/services/bar-chart.service';
 import { D3BadgeModule } from './d3-bar-chart/d3-bar-char.module';
 import { BarChartComponent } from './bar-chart.component';
 import { CommonModule } from '@angular/common';
+import { D3BarChartDetailsComponent } from './d3-bar-chart-details/d3-bar-chart-details.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BarChartComponent],
+  declarations: [BarChartComponent, D3BarChartDetailsComponent],
   imports: [CommonModule, RouterModule.forChild(routes), D3BadgeModule],
   providers: [BarCharService],
   exports: [BarChartComponent, RouterModule],
