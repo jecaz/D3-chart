@@ -20,7 +20,7 @@ const DATA: BarChart[] = [
 @Injectable({
   providedIn: 'root',
 })
-export class BarCharService {
+export class BarChartService {
   constructor() {}
 
   getChartData(): Observable<BarChart[]> {

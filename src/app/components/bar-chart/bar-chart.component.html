@@ -1,6 +1,10 @@
-<h2>Bar Chart</h2>
-<d3-bar-chart
-  [barChart]="data$ | async"
-  (barDetails)="barDetails = $event"
-></d3-bar-chart>
-<d3-bar-chart-details [barDetails]="barDetails"></d3-bar-chart-details>
+<div class="row">
+  <div class="col-8 m-auto">
+    <h2>Bar Chart</h2>
+    <d3-bar-chart
+      [barChart]="data$ | async"
+      (barDetails)="barDetails = $event"
+    ></d3-bar-chart>
+    <d3-bar-chart-details [barDetails]="barDetails"></d3-bar-chart-details>
+  </div>
+</div>

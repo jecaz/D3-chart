@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BarCharService } from 'src/app/services/bar-chart.service';
+import { BarChartService } from 'src/app/services/bar-chart.service';
 import { Observable } from 'rxjs';
 import { BarChart } from 'src/app/models/bar-chart.model';
 
@@ -13,9 +13,9 @@ export class BarChartComponent implements OnInit {
   data$: Observable<BarChart[]>;
   barDetails: BarChart;
 
-  constructor(protected barCharService: BarCharService) {}
+  constructor(protected barChartService: BarChartService) {}
 
   ngOnInit(): void {
-    this.data$ = this.barCharService.getChartData();
+    this.data$ = this.barChartService.getChartData();
   }
 }
