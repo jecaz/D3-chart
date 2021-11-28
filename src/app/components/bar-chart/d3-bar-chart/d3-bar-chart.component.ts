@@ -44,6 +44,16 @@ export class D3BarChartComponent implements OnInit {
   protected drawBars(data: BarChart[]): void {
     const xAxis = this.getXaxis(data);
     const yAxis = this.getYaxis(data);
+    this.initializeTooltip();
+    const tooltipDiv = d3.select('#myTooltip');
+    const mouseover = (event, d) => {
+      tooltipDiv
+        .html('Date: ' + d.date + '<br>' + 'Value: €' + d.value)
+        .style('visibility', 'visible')
+        .style('top', event.pageY - 70 + 'px')
+        .style('left', event.pageX - 65 + 'px');
+      // d3.select(this).transition().attr('fill', '#eec42d');
+    };
 
     // Create and fill the bars
     this.svg
@@ -53,7 +63,9 @@ export class D3BarChartComponent implements OnInit {
       .append('rect')
       .attr('x', (d) => xAxis(d.date))
       .attr('y', (d) => yAxis(d.value))
-      // .style('cursor', 'pointer')
+      .on('mousemove', mouseover)
+      .on('mouseout', () => tooltipDiv.style('visibility', 'hidden'))
+      .on('mouseover', mouseover)
       .on('click', (event, data) => {
         if (!data.color) {
           data.color = this.defaultColor;
@@ -63,6 +75,13 @@ export class D3BarChartComponent implements OnInit {
       .attr('width', xAxis.bandwidth())
       .attr('height', (d) => this.height - yAxis(d.value))
       .attr('fill', (d) => (d.color ? d.color : this.defaultColor));
+  }
+
+  protected initializeTooltip() {
+    d3.select('body')
+      .append('div')
+      .attr('id', 'myTooltip')
+      .style('visibility', 'hidden');
   }
 
   protected getXaxis(data: BarChart[]) {
@@ -106,25 +125,9 @@ export class D3BarChartComponent implements OnInit {
     // Add a label for the Y-axis
     this.svg
       .append('text')
-      .attr('transform', 'translate(-30,-10)')
+      .attr('transform', 'translate(-10,-10)')
       .style('text-anchor', 'middle')
-      .text('Value');
+      .text('Value in €');
     return y;
-  }
-
-  protected createAndFillChart(data: BarChart[], xAxis, yAxis) {
-    // Create and fill the bars
-    this.svg
-      .selectAll('bars')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('x', (d) => xAxis(d.date))
-      .attr('y', (d) => yAxis(d.value))
-      // .style('cursor', 'pointer')
-      .on('click', (event, data) => this.barDetails.emit(data))
-      .attr('width', xAxis.bandwidth())
-      .attr('height', (d) => this.height - yAxis(d.value))
-      .attr('fill', (d) => (d.color ? d.color : this.defaultColor));
   }
 }

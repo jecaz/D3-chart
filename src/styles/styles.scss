@@ -1,2 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
+#myTooltip {
+  position: absolute;
+  text-align: left;
+  width: max-content;
+  height: auto;
+  min-height: 20px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgb(0, 0, 0);
+  color: #fff;
+  border-radius: 3px;
+  pointer-events: none;
+  padding: 10px;
+  opacity: 1;
+}
+
+// style for tooltip triangle
+// #myTooltip:before {
+//   box-sizing: border-box;
+//   display: inline;
+//   font-size: 18px;
+//   width: 100%;
+//   line-height: 1;
+//   color: rgb(0, 0, 0);
+//   content: "\25BC";
+//   position: absolute;
+//   text-align: center;
+//   top: 100%;
+//   left: -2px;
+// }
